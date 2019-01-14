@@ -1,0 +1,221 @@
+:root{
+    --oscuro: #212121;
+    --secundario:#0097a7;
+    --primario: #ffc107; 
+    --anchopantalla: 1200px; 
+    --gris:#757575;
+}
+html{
+    box-sizing: border-box;
+    min-height: 100%;
+    font-size: 62.5%;/*truco para responsive en las fuentes*/
+    /*16px * 62.5% da 10px*/
+}
+*,*::before,*::after{
+    box-sizing: inherit;
+}
+body{
+    min-height: 100%;
+    font-family: 'Krub', sans-serif;
+    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    font-size: 1.6rem;/*vuelve a 16px*/
+}
+/*el flex container va en el padre en este caso nav*/
+.site-header{
+    background-color: white;
+}
+.site-header nav{
+    max-width: var(--anchopantalla);
+    margin: 0 auto;
+    padding: 2rem 0;/*tenia ese error*/
+    display:flex;
+    /*justify-content: space-between;*//*space-evenly / space-around / flex-end*/
+    flex-direction: column;
+    /*con column no se usa justify content*/
+    align-items: center;
+                    
+}
+/*768px tamaño estandar de tablet*/
+/*media query*/
+@media (min-width:768px){
+    .site-header nav{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+.site-header nav a{
+    color: var(--oscuro);
+    font-size: 2.2rem;
+    text-decoration: none;
+    margin-bottom: 2rem;
+}
+.site-header nav a:last-of-type{
+    margin-bottom: 0;
+}
+@media (min-width:768px){
+    .site-header nav a{
+        margin-bottom: 0;
+    }
+}
+.contenedor-hero h1{
+    margin:0;
+    text-transform: uppercase;
+}
+h2, h3{
+    text-align: center;
+}
+p{
+    font-size: 1.8rem;
+    line-height: 1.5;
+    text-align: justify;
+}
+h3{
+    color: var(--secundario);
+    font-weight: 400;
+    font-size: 3rem;
+}
+.hero{
+    height: 45rem;
+    background-image: url(../img/hero.jpg);
+    position: relative;/*padre*/
+    display: flex;
+    justify-content: center;/*centrado horizontal porque trabajamos con flex direction -- row*/
+    align-items: center;/*centrado vertical*/
+}
+.hero::after{/*efecto de oscuridad en la imagen*/
+    content:'';
+    background-color: rgba(0, 0, 0, .6);
+    position: absolute;/*hijo*/
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.contenedor-hero{
+    color: white;
+    /*traer contenido hacia el frente*/
+    position: relative;
+    z-index: 1;/*cualquier numero mayor que 0 trae el contenido al frente*/
+   /* display: flex;
+    flex-direction: column;
+    align-items: center;*/
+    text-align: center;
+}
+.contenedor-hero i{
+    font-size: 5rem;
+    color: var(--primario);
+    
+}
+.boton{
+    background-color: var(--secundario);
+    padding: 1rem 5rem;
+    display: inline-block;/*para poner el padding top*/
+    margin-top: 1rem;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2.2rem;
+    border-radius: .5rem;
+    border: none;
+}
+.boton:hover{
+    cursor: pointer;
+    color: var(--primario)
+}
+.contenedor{
+    max-width: var(--anchopantalla);
+    margin: 3rem auto;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 3rem;
+    -webkit-box-shadow: 0px 8px 18px -4px rgba(0,0,0,0.67);
+    -moz-box-shadow: 0px 8px 18px -4px rgba(0,0,0,0.67);
+    box-shadow: 0px 8px 18px -4px rgba(0,0,0,0.67);
+}
+
+@media (min-width:768px){
+    .contenedor-servicios{
+        display: flex;/*se colocan uno frente al otro y es responsive*/
+        justify-content: space-between;
+    }
+    /*se escribe un poco en el hijo*/
+    .servicio{
+        flex: 0 0 calc(33.3% - 1rem);/*parametros -- factor de crecimiento el cual divide el espacio total entre el coeficiente colocado en el primer parametro/ minimo/ base*/
+        /*flex es como margin: 0 auto*/
+        /*con flex no es necesario limpiar los contenedores*/
+    }
+    /*.doble{
+        flex:2;
+    }*/
+}
+.servicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+.iconos{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--primario);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /*margin: 0 auto; solucion 1 para centrar circulos amarillos*/
+}
+.iconos{
+    font-size: 3rem;
+}
+form{
+    background-color: var(--gris);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+}
+form legend{
+    display: flex;
+    justify-content: center;
+    color: var(--primario);
+    font-size: 2.2rem;
+    margin: 3rem 0;
+}
+@media(min-width: 768px){
+    form{
+        max-width: 800px;
+        margin: 3rem auto;
+    }
+    .contenedor-campos{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;/*para solucionar que se salen del contenedor gris*/
+    }
+    .campo{
+        flex: 0 0 calc(50% - 1rem);
+    }
+}
+.campo{
+    display: flex;
+    margin-bottom: 2rem;
+}
+.campo label{
+    padding-top:.5rem;
+    flex: 0 0 90px;
+    color: white;
+}
+.campo input{
+    flex: 1;
+    height: 4rem;
+}
+.campo textarea{
+    flex: 1;
+    height: 6rem;
+}
+.w-100{
+    flex: 0 0 100% ;
+}
+.enviar{
+    display: flex;
+    justify-content: flex-end;
+}
